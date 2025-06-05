@@ -23,7 +23,7 @@ public class TaskController {
     public Integer runTask(@RequestBody TaskDto dto) {
         TaskScript task = new DynamicTask(dto.getName(), params -> {
             if (Math.random() < 0.5) throw new RuntimeException("Ошибка выполнения");
-            System.out.println("✅ Задача '" + dto.getName() + "' успешно выполнена");
+            System.out.println("Задача '" + dto.getName() + "' успешно выполнена");
         });
 
         return taskService.addTask(task, System.currentTimeMillis(), dto.getMaxRetries());
@@ -33,7 +33,7 @@ public class TaskController {
     public Integer scheduleTask(@RequestBody TaskDto dto, @RequestParam long delay) {
         TaskScript task = new DynamicTask(dto.getName(), params -> {
             if (Math.random() < 0.5) throw new RuntimeException("Ошибка выполнения");
-            System.out.println("✅ Задача '" + dto.getName() + "' успешно выполнена");
+            System.out.println("Задача '" + dto.getName() + "' успешно выполнена");
         });
 
         return taskService.addTask(task, System.currentTimeMillis() + delay, dto.getMaxRetries());
